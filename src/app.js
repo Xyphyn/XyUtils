@@ -6,7 +6,6 @@ import { Client, Collection, Intents, MessageEmbed } from 'discord.js'
 import chalk from 'chalk'
 import { config } from 'dotenv'
 import fs from 'fs'
-import configF from '../config.js'
 
 config()
 
@@ -14,8 +13,6 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 client.commands = new Collection()
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
-
-const { token } = configF
 
 for (const file of commandFiles) {
 	const command = import(`./commands/${file}`).then(command => { client.commands.set(command.data.name, command) })
@@ -54,4 +51,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 spinner.update({ text: chalk.yellow('Logging in...') })
-client.login(token).catch(error => { spinner.error({ text: chalk.red(`${error}`) }) })
+client.login(process.env.TOKEN).catch(error => { spinner.error({ text: chalk.red(`${error}`) }) })
