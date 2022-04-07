@@ -47,8 +47,7 @@ export const update = (message) => {
 
     const id = message.id
     
-    const embed = new MessageEmbed().setTitle('Poll')
-    .setDescription(`${pollMeta.get(id).question}`)
+    const embed = new MessageEmbed().setTitle(`${pollMeta.get(id).question}`)
     .addField(pollMeta.get(id).option1, option1c.toString())
     .addField(pollMeta.get(id).option2, option2c.toString()).setColor('#0099ff')
 
