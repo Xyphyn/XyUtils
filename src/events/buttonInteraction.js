@@ -1,5 +1,6 @@
+import { next, prev } from "../commands/meme.js";
 import { update } from "../commands/poll.js";
-import { polls } from "../pollManager.js";
+import { polls } from "../managers/pollManager.js";
 
 export const name = "interactionCreate"
 export const once = false
@@ -21,6 +22,16 @@ export const execute = async (interaction) => {
             poll2.set(interaction.user.id, 'option2')
             update(interaction.message)
             interaction.deferUpdate()
+            break;
+
+        case "next-meme":
+            interaction.deferUpdate()
+            next(interaction.message)
+            break;
+
+        case "prev-meme":
+            interaction.deferUpdate()
+            prev(interaction.message)
             break;
     }
 }

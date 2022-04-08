@@ -43,7 +43,7 @@ client.on('interactionCreate', async interaction => {
 	try {
 		await command.execute(interaction, client);
 	} catch (error) {
-        const embed = new MessageEmbed().setColor('#ff0000').setTitle('Error').setDescription(`<:criticalerror:940319019901263913> ${error.message}`)
+        const embed = new MessageEmbed().setColor('#ff0000').setTitle('Error').setDescription(`<:criticalerror:940319019901263913> ${error.message}\n${error.stack.split("\n")[4]}`)
         try {
 		    await interaction.reply({ embeds: [ embed ] });
         } catch (err) {

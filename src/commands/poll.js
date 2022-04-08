@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageActionRow, MessageButton, MessageEmbed } from "discord.js";
-import { polls, pollMeta } from "../pollManager.js";
+import { polls, pollMeta } from "../managers/pollManager.js";
 
 export const data = new SlashCommandBuilder().setName("poll").setDescription("Creates a poll.")
     .addStringOption(option => option.setName("question").setDescription("The question lol").setRequired(true))
