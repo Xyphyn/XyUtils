@@ -29,7 +29,9 @@ export const execute = async (interaction) => {
 
     const res = await (await fetch(url)).json()
 
-    embed.setDescription("").setTitle('Post').setImage(res.data.children[4].data.url)
+    const description = res.data.children[4].data.selftext
+
+    embed.setDescription(description).setTitle(res.data.children[4].data.title).setImage(res.data.children[4].data.url).setURL(res.data.children[4].data.url)
 
     const msg = await interaction.editReply({
         embeds: [ embed ],
@@ -60,7 +62,9 @@ export const next = async (message) => {
 
     const res = await (await fetch(url)).json()
 
-    embed.setDescription("").setTitle('Post').setImage(res.data.children[memeMeta.get(message.id).index].data.url)
+    const description = res.data.children[memeMeta.get(message.id).index].data.selftext
+
+    embed.setDescription(description).setTitle(res.data.children[memeMeta.get(message.id).index].data.title).setImage(res.data.children[memeMeta.get(message.id).index].data.url).setURL(res.data.children[memeMeta.get(message.id).index].data.url)
 
     message.edit({
         embeds: [ embed ]
@@ -83,7 +87,9 @@ export const prev = async (message) => {
 
     const res = await (await fetch(url)).json()
 
-    embed.setDescription("").setTitle('Post').setImage(res.data.children[memeMeta.get(message.id).index].data.url)
+    const description = res.data.children[memeMeta.get(message.id).index].data.selftext
+
+    embed.setDescription(description).setTitle(res.data.children[memeMeta.get(message.id).index].data.title).setImage(res.data.children[memeMeta.get(message.id).index].data.url).setURL(res.data.children[memeMeta.get(message.id).index].data.url)
 
     message.edit({
         embeds: [ embed ]
