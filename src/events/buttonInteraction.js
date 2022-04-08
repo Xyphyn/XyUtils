@@ -7,12 +7,6 @@ export const execute = async (interaction) => {
     // if the interaction is a message component interaction, reply with the message component
     if (!interaction.isButton()) return;
     switch (interaction.customId) {
-        case "test":
-            await interaction.reply({
-                content: `ur sus tbh`,
-                components: []
-            })
-            break;
         case "pollOption1":
             const poll1 = polls.get(interaction.message.id)
             if (!poll1) break;
@@ -20,6 +14,7 @@ export const execute = async (interaction) => {
             interaction.deferUpdate()
             update(interaction.message)
             break;
+
         case "pollOption2":
             const poll2 = polls.get(interaction.message.id)
             if (!poll2) break;

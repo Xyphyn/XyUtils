@@ -1,17 +1,11 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
-import { MessageActionRow, MessageButton } from "discord.js"
+import { MessageActionRow, MessageButton, MessageEmbed } from "discord.js"
 
-export const data = new SlashCommandBuilder().setName("ping").setDescription("Replies with pong!")
-    .addStringOption(option => option.setName("text").setDescription("text to echo back.").setRequired(true))
-export const execute = async (interaction) => {
-    const row = new MessageActionRow().addComponents(
-        new MessageButton()
-            .setCustomId("test")
-            .setLabel("sussi baka")
-            .setStyle('DANGER')
-    )
+export const data = new SlashCommandBuilder().setName("ping").setDescription("Returns Discord API Ping")
+export const execute = async (interaction, client) => {
+    const embed = new MessageEmbed().setTitle("Discord latency")
+    .setDescription(`<:wifi:962042152387477535> ${client.ws.ping}ms`).setColor('#0099ff')
     await interaction.reply({
-        content: `pong! ${interaction.options.getString("text")}`,
-        components: [ row ]
+        embeds: [embed]
     })
 }
