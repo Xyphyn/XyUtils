@@ -2,5 +2,6 @@
 A general purpose bot, made for **Xylight's dungeon.**
 
 # ToDo
-[-] Isn't breaking (something's wrong...)
-[x] Add a meme command
+[ ] Make bot break (for some reason it isn't right now. That's odd)
+[x] Add /meme
+[ ] Add moderation capabilities
