@@ -31,7 +31,8 @@ export const execute = async (interaction) => {
     pollMeta.set(message.id, {
         question: interaction.options.getString("question"),
         option1: interaction.options.getString("option1"),
-        option2: interaction.options.getString("option2")
+        option2: interaction.options.getString("option2"),
+        
     })
 }
 

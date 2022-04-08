@@ -37,7 +37,7 @@ export const execute = async (interaction) => {
         embeds: [ embed ],
         components: [ row ]
     }).then(msg => {
-        memeMeta.set(msg.id, { subreddit: subreddit, index: 4 })
+        memeMeta.set(msg.id, { subreddit: subreddit, index: 4, user: interaction.user.id })
     })
 
     setTimeout((msg, memeMeta) => {
@@ -46,8 +46,10 @@ export const execute = async (interaction) => {
     }, 1000 * 60 * 60)
 }
 
-export const next = async (message) => {
+export const next = async (message, user) => {
     if (memeMeta.get(message.id).index >= 100) return;
+    if (!(user.id === memeMeta.get(message.id).user)) return;
+
     memeMeta.get(message.id).index++
 
     const embed = new MessageEmbed().setTitle("Getting posts...")
@@ -71,8 +73,9 @@ export const next = async (message) => {
     })
 }
 
-export const prev = async (message) => {
+export const prev = async (message, user) => {
     if (memeMeta.get(message.id).index <= 4) return;
+    if (!(user.id === memeMeta.get(message.id).user)) return;
     memeMeta.get(message.id).index--
 
     const embed = new MessageEmbed().setTitle("Getting posts...")

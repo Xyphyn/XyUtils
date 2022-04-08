@@ -1,5 +1,6 @@
 import { next, prev } from "../commands/meme.js";
 import { update } from "../commands/poll.js";
+import { memeMeta } from "../managers/memeManager.js";
 import { polls } from "../managers/pollManager.js";
 
 export const name = "interactionCreate"
@@ -26,12 +27,12 @@ export const execute = async (interaction) => {
 
         case "next-meme":
             interaction.deferUpdate()
-            next(interaction.message)
+            next(interaction.message, interaction.user)
             break;
 
         case "prev-meme":
             interaction.deferUpdate()
-            prev(interaction.message)
+            prev(interaction.message, interaction.user)
             break;
     }
 }
