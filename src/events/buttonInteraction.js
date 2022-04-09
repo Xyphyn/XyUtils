@@ -27,11 +27,17 @@ export const execute = async (interaction) => {
 
         case "next-meme":
             interaction.deferUpdate()
+
+            if (memeMeta.get(interaction.message.id) === undefined) return; 
+
             next(interaction.message, interaction.user)
             break;
 
         case "prev-meme":
             interaction.deferUpdate()
+
+            if (memeMeta.get(interaction.message.id) === undefined) return; 
+            
             prev(interaction.message, interaction.user)
             break;
     }
