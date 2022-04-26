@@ -21,7 +21,7 @@ export default async function deploy() {
 
     const rest = new REST({ version: '9' }).setToken(process.env.TOKEN)
     
-    rest.put(Routes.applicationGuildCommands(process.env.DEV_CLIENT_ID, process.env.DEV_GUILD_ID), { body: commands })
+    rest.put(Routes.applicationCommand(process.env.DEV_CLIENT_ID), { body: commands })
         .then(() => spinner.success({ text: chalk.green(`Commands deployed!`) }))
         .catch(error => spinner.error({ text: chalk.red(`${error}`) }))
 }
